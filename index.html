@@ -1,145 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>For Navuhh Pattu ❤️</title>
+<meta charset="UTF-8">
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
-        font-family: 'Segoe UI', sans-serif;
-        text-align: center;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
+body {
+  margin:0;
+  padding:0;
+  font-family: 'Segoe UI', sans-serif;
+  text-align:center;
+  background: linear-gradient(135deg,#ff758c,#ff7eb3);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
 
-    .container {
-        background: white;
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        max-width: 450px;
-        position: relative;
-    }
+.container {
+  background:white;
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+  max-width:400px;
+}
 
-    h1 {
-        color: #ff2e63;
-        font-size: 28px;
-    }
+h1 {
+  color:#ff2e63;
+}
 
-    p {
-        font-size: 18px;
-        color: #444;
-        margin: 15px 0;
-        line-height: 1.5;
-    }
+button {
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    button {
-        padding: 12px 25px;
-        margin: 10px;
-        border: none;
-        border-radius: 30px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+.yesBtn {
+  background:#ff2e63;
+  color:white;
+}
 
-    #yesBtn {
-        background-color: #ff2e63;
-        color: white;
-    }
+.noBtn {
+  background:#ccc;
+}
 
-    #yesBtn:hover {
-        background-color: #e60039;
-        transform: scale(1.1);
-    }
+button:hover {
+  transform:scale(1.1);
+}
 
-    #noBtn {
-        background-color: #ddd;
-        position: absolute;
-    }
+.hidden {
+  display:none;
+}
 
-    .hidden {
-        display: none;
-    }
+.happy {
+  font-size:22px;
+  color:#ff2e63;
+}
 
-    .heart {
-        position: fixed;
-        color: #ff2e63;
-        font-size: 20px;
-        animation: float 4s linear infinite;
-    }
+.sad {
+  font-size:18px;
+  color:#444;
+}
 
-    @keyframes float {
-        from { transform: translateY(100vh); opacity: 1; }
-        to { transform: translateY(-10vh); opacity: 0; }
-    }
+.heart {
+  position:fixed;
+  font-size:20px;
+  animation:float 4s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity:1; }
+  to { transform: translateY(-10vh); opacity:0; }
+}
 </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Navuhh Pattu ❤️</h1>
-    <p>
-        From the way you smile…  
-        to the way you care…  
-        you make my world softer and sweeter.
-    </p>
-    <p>
-        I don’t need a perfect Valentine’s Day…  
-        I just need YOU beside me.
-    </p>
+<div class="container" id="mainPage">
+  <h1>Navuhh Pattu ❤️</h1>
+  <p>You make my world softer and sweeter.</p>
+  <h2>Will you be my Valentine? 💘</h2>
+  <button class="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+  <button class="noBtn" onclick="noClicked()">No 😅</button>
+</div>
 
-    <h2>Will you be my Valentine, Navuhh pattu? 💘</h2>
+<div class="container hidden" id="sadPage">
+  <h1>Oh no... 🥺</h1>
+  <p class="sad">
+    Oh… you don’t like me? 💔  
+    That really hurts my heart...  
+    Please click YES 😭❤️
+  </p>
+  <button class="yesBtn" onclick="goBack()">Okay fine... Yes ❤️</button>
+</div>
 
-    <button id="yesBtn">Yes, always yours ❤️</button>
-    <button id="noBtn">No 😅</button>
-
-    <p id="message" class="hidden">
-        Aaaaa I knew it! 🥰💞  
-        You are my safe place, my happiness,  
-        and my forever Valentine.  
-        I love you so much, Navuhh pattu ❤️
-    </p>
+<div class="container hidden" id="happyPage">
+  <h1>YAAAYYYY!!! 🎉❤️</h1>
+  <p class="happy">
+    You just made me the happiest person ever!  
+    You are my forever Valentine Navuhh pattu 💞  
+    I love you soooo much ❤️
+  </p>
 </div>
 
 <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const message = document.getElementById("message");
+function yesClicked(){
+  document.getElementById("mainPage").classList.add("hidden");
+  document.getElementById("happyPage").classList.remove("hidden");
+  createHearts();
+}
 
-    yesBtn.addEventListener("click", () => {
-        message.classList.remove("hidden");
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
-        createHearts();
-    });
+function noClicked(){
+  document.getElementById("mainPage").classList.add("hidden");
+  document.getElementById("sadPage").classList.remove("hidden");
+}
 
-    noBtn.addEventListener("mouseover", () => {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 50);
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
-    });
+function goBack(){
+  document.getElementById("sadPage").classList.add("hidden");
+  document.getElementById("mainPage").classList.remove("hidden");
+}
 
-    function createHearts() {
-        setInterval(() => {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = Math.random() * 20 + 15 + "px";
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
-        }, 300);
-    }
+function createHearts(){
+  setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove()},4000);
+  },300);
+}
 </script>
 
 </body>
