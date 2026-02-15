@@ -92,13 +92,18 @@ button:hover{
   <p>Nee dha enaku ellameh… you are my everything 🖤💜</p>
 </div>
 
-<audio autoplay loop>
+<audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8e7c8c2e1.mp3" type="audio/mpeg">
 </audio>
+  <script>
+const music = document.getElementById("bgMusic");
 
-<script>
+/* Play music when user interacts */
+document.body.addEventListener("click", function(){
+  music.play();
+}, { once: true });
 
-/* Big Floating Black & Purple Hearts */
+/* Big Floating Hearts */
 function spawnHearts(){
   setInterval(()=>{
     let heart=document.createElement("div");
@@ -126,6 +131,5 @@ function yes(){
 }
 
 </script>
-
 </body>
 </html>
