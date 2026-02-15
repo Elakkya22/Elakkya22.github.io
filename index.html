@@ -1,141 +1,146 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For Navuhh Pattu ❤️</title>
 <meta charset="UTF-8">
+<title>Beach Valentine 💘</title>
+
 <style>
-body {
+body{
   margin:0;
   padding:0;
+  overflow:hidden;
   font-family: 'Segoe UI', sans-serif;
   text-align:center;
-  background: linear-gradient(135deg,#ff758c,#ff7eb3);
   height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
+  background: linear-gradient(to top,#fdd835 0%,#81d4fa 60%);
 }
 
-.container {
+/* Beach Sand */
+.sand{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:35%;
+  background:#f4c542;
+}
+
+/* Sun */
+.sun{
+  position:absolute;
+  top:40px;
+  right:60px;
+  width:100px;
+  height:100px;
+  background:yellow;
+  border-radius:50%;
+  box-shadow:0 0 50px orange;
+}
+
+/* Animals floating */
+.animal{
+  position:absolute;
+  font-size:35px;
+  animation: float 8s linear infinite;
+}
+
+@keyframes float{
+  from{ transform:translateY(100vh); }
+  to{ transform:translateY(-10vh); }
+}
+
+.container{
+  position:relative;
+  z-index:10;
   background:white;
-  padding:40px;
-  border-radius:25px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
-  max-width:400px;
+  padding:30px;
+  border-radius:20px;
+  margin-top:120px;
+  display:inline-block;
 }
 
-h1 {
-  color:#ff2e63;
-}
-
-button {
-  padding:12px 25px;
-  margin:10px;
+button{
+  padding:10px 20px;
   border:none;
-  border-radius:30px;
+  border-radius:25px;
   font-size:16px;
+  margin:10px;
   cursor:pointer;
   transition:0.3s;
 }
 
-.yesBtn {
-  background:#ff2e63;
+.yes{
+  background:#ff4081;
   color:white;
 }
 
-.noBtn {
+.no{
   background:#ccc;
+  position:absolute;
 }
 
-button:hover {
+button:hover{
   transform:scale(1.1);
 }
 
-.hidden {
+.hidden{
   display:none;
-}
-
-.happy {
-  font-size:22px;
-  color:#ff2e63;
-}
-
-.sad {
-  font-size:18px;
-  color:#444;
-}
-
-.heart {
-  position:fixed;
-  font-size:20px;
-  animation:float 4s linear infinite;
-}
-
-@keyframes float {
-  from { transform: translateY(100vh); opacity:1; }
-  to { transform: translateY(-10vh); opacity:0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="mainPage">
+<div class="sun"></div>
+<div class="sand"></div>
+
+<div class="container" id="main">
   <h1>Navuhh Pattu ❤️</h1>
-  <p>You make my world softer and sweeter.</p>
-  <h2>Will you be my Valentine? 💘</h2>
-  <button class="yesBtn" onclick="yesClicked()">Yes ❤️</button>
-  <button class="noBtn" onclick="noClicked()">No 😅</button>
+  <p>knjm late agiduchi but still💘</p>
+  <h2>Will you be my Valentine?</h2>
+  <button class="yes" onclick="yes()">Yes ❤️</button>
+  <button class="no" id="noBtn">No 😅</button>
 </div>
 
-<div class="container hidden" id="sadPage">
-  <h1>Oh no... 🥺</h1>
-  <p class="sad">
-    Oh… you don’t like me? 💔  
-    That really hurts my heart...  
-    Please click YES 😭❤️
-  </p>
-  <button class="yesBtn" onclick="goBack()">Okay fine... Yes ❤️</button>
+<div class="container hidden" id="happy">
+  <h1>Podduuu🎉💖</h1>
+  <h2>I love youu so muchu pattu🐶🐱</h2>
+  <p>Nii dha ennaku yellam meh nii ella na ennaku yarum ella, you are my everything❤️</p>
 </div>
 
-<div class="container hidden" id="happyPage">
-  <h1>YAAAYYYY!!! 🎉❤️</h1>
-  <p class="happy">
-    You just made me the happiest person ever!  
-    You are my forever Valentine Navuhh pattu 💞  
-    I love you soooo much ❤️
-  </p>
-</div>
+<audio id="music" autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8e7c8c2e1.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-function yesClicked(){
-  document.getElementById("mainPage").classList.add("hidden");
-  document.getElementById("happyPage").classList.remove("hidden");
-  createHearts();
-}
 
-function noClicked(){
-  document.getElementById("mainPage").classList.add("hidden");
-  document.getElementById("sadPage").classList.remove("hidden");
-}
-
-function goBack(){
-  document.getElementById("sadPage").classList.add("hidden");
-  document.getElementById("mainPage").classList.remove("hidden");
-}
-
-function createHearts(){
+/* Make animals appear everywhere */
+function spawnAnimals(){
   setInterval(()=>{
-    const heart=document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="❤️";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(Math.random()*20+15)+"px";
-    document.body.appendChild(heart);
-    setTimeout(()=>{heart.remove()},4000);
-  },300);
+    let animal=document.createElement("div");
+    animal.classList.add("animal");
+    animal.innerHTML = Math.random() > 0.5 ? "🐶" : "🐱";
+    animal.style.left = Math.random()*100+"vw";
+    animal.style.fontSize = (Math.random()*30+20)+"px";
+    document.body.appendChild(animal);
+    setTimeout(()=>animal.remove(),8000);
+  },500);
 }
+
+spawnAnimals();
+
+/* No button runs away */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+  noBtn.style.top=Math.random()*80+"vh";
+  noBtn.style.left=Math.random()*80+"vw";
+});
+
+/* Yes button */
+function yes(){
+  document.getElementById("main").classList.add("hidden");
+  document.getElementById("happy").classList.remove("hidden");
+}
+
 </script>
 
 </body>
