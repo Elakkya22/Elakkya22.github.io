@@ -2,66 +2,54 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Beach Valentine 💘</title>
+<title>Love Theme 💜</title>
 
 <style>
 body{
   margin:0;
   padding:0;
   overflow:hidden;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:'Segoe UI',sans-serif;
   text-align:center;
   height:100vh;
-  background: linear-gradient(to top,#fdd835 0%,#81d4fa 60%);
+  background: linear-gradient(135deg,#1a001f,#4b0082,#000000);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* Beach Sand */
-.sand{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  height:35%;
-  background:#f4c542;
-}
-
-/* Sun */
-.sun{
+/* Floating Hearts */
+.heart{
   position:absolute;
-  top:40px;
-  right:60px;
-  width:100px;
-  height:100px;
-  background:yellow;
-  border-radius:50%;
-  box-shadow:0 0 50px orange;
-}
-
-/* Animals floating */
-.animal{
-  position:absolute;
-  font-size:35px;
-  animation: float 8s linear infinite;
+  font-size:60px;
+  animation: float 6s linear infinite;
+  opacity:0.8;
 }
 
 @keyframes float{
-  from{ transform:translateY(100vh); }
-  to{ transform:translateY(-10vh); }
+  from{ transform:translateY(100vh) rotate(0deg); }
+  to{ transform:translateY(-10vh) rotate(360deg); }
 }
 
 .container{
   position:relative;
   z-index:10;
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  margin-top:120px;
-  display:inline-block;
+  background:rgba(0,0,0,0.7);
+  padding:35px;
+  border-radius:25px;
+  box-shadow:0 0 40px rgba(128,0,128,0.7);
+  max-width:420px;
+}
+
+h1{
+  color:#d580ff;
 }
 
 button{
-  padding:10px 20px;
+  padding:12px 25px;
   border:none;
-  border-radius:25px;
+  border-radius:30px;
   font-size:16px;
   margin:10px;
   cursor:pointer;
@@ -69,12 +57,12 @@ button{
 }
 
 .yes{
-  background:#ff4081;
+  background:#a020f0;
   color:white;
 }
 
 .no{
-  background:#ccc;
+  background:#444;
   position:absolute;
 }
 
@@ -90,43 +78,39 @@ button:hover{
 
 <body>
 
-<div class="sun"></div>
-<div class="sand"></div>
-
 <div class="container" id="main">
-  <h1>Navuhh Pattu ❤️</h1>
-  <p>knjm late agiduchi but still💘</p>
+  <h1>Navuhh Pattu 💜</h1>
+  <p>Konjam late agiduchi… but my love never late 💘</p>
   <h2>Will you be my Valentine?</h2>
-  <button class="yes" onclick="yes()">Yes ❤️</button>
-  <button class="no" id="noBtn">No 😅</button>
+  <button class="yes" onclick="yes()">Yes 💜</button>
+  <button class="no" id="noBtn">No 🖤</button>
 </div>
 
 <div class="container hidden" id="happy">
-  <h1>Podduuu🎉💖</h1>
-  <h2>I love youu so muchu pattu🐶🐱</h2>
-  <p>Nii dha ennaku yellam meh nii ella na ennaku yarum ella, you are my everything❤️</p>
+  <h1>Podduuuuu 😭💜</h1>
+  <h2>I love you so muchu pattu 🐶🐱</h2>
+  <p>Nee dha enaku ellameh… you are my everything 🖤💜</p>
 </div>
 
-<audio id="music" autoplay loop>
+<audio autoplay loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8e7c8c2e1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* Make animals appear everywhere */
-function spawnAnimals(){
+/* Big Floating Black & Purple Hearts */
+function spawnHearts(){
   setInterval(()=>{
-    let animal=document.createElement("div");
-    animal.classList.add("animal");
-    animal.innerHTML = Math.random() > 0.5 ? "🐶" : "🐱";
-    animal.style.left = Math.random()*100+"vw";
-    animal.style.fontSize = (Math.random()*30+20)+"px";
-    document.body.appendChild(animal);
-    setTimeout(()=>animal.remove(),8000);
-  },500);
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = Math.random()>0.5 ? "💜" : "🖤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*40+40)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+  },400);
 }
-
-spawnAnimals();
+spawnHearts();
 
 /* No button runs away */
 const noBtn=document.getElementById("noBtn");
